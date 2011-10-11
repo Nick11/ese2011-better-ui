@@ -1,0 +1,57 @@
+#{extends 'main.html' /}
+#{set title:'Calendar' /}
+
+<b>${calendar.getName()}</b>
+<div id="calendarView">
+	<a id="arrowLeft" href="@{Application.calendar(calendarIndex, otherUser.getName(), 
+			 	new GregorianCalendar( selectedDate.get(GregorianCalendar.YEAR), selectedDate.get(GregorianCalendar.MONTH)-1, 1))}"> < </a>
+	<b id="month">${selectedDate.getDisplayName(GregorianCalendar.MONTH, GregorianCalendar.LONG, Locale.GERMAN)} ${selectedDate.get(GregorianCalendar.YEAR)}</b>
+	<a id="arrowRight" href="@{Application.calendar(calendarIndex, otherUser.getName(), 
+			 	new GregorianCalendar( selectedDate.get(GregorianCalendar.YEAR), selectedDate.get(GregorianCalendar.MONTH)+1, 1))}"> > </a>
+
+	<table border="1">
+		%{for (day in listOfDaysInMonth){ }%
+		#{ifnot ((day-1)%7)}
+			<tr>
+		#{/ifnot}
+		
+		<td class=" 
+		#{if day==today.get(GregorianCalendar.DAY_OF_MONTH) && today.get(GregorianCalendar.MONTH)==selectedDate.get(GregorianCalendar.MONTH) && today.get(GregorianCalendar.YEAR)==selectedDate.get(GregorianCalendar.YEAR)}
+				thisDay 
+			#{/if}
+			
+			#{if calendar.daysEvents(selectedDate.get(GregorianCalendar.YEAR), selectedDate.get(GregorianCalendar.MONTH), day, user)}
+				hasEventDay
+			#{/if}
+			#{if day==selectedDate.get(GregorianCalendar.DAY_OF_MONTH)}
+				selectedDay
+			#{/if}
+			">
+		
+			
+			
+			 <a class="dates" href="@{Application.calendar(calendarIndex, otherUser.getName(), new GregorianCalendar( selectedDate.get(GregorianCalendar.YEAR), selectedDate.get(GregorianCalendar.MONTH),day,0,0))}">${day}</a></td>
+			#{ifnot ((day)%7)}	
+				</tr>
+			#{/ifnot}
+		
+		%{ } }%
+		</tr>
+	</table>
+</div>
+<ol>
+	%{for (event in calendar.daysEvents(selectedDate.get(GregorianCalendar.YEAR), selectedDate.get(GregorianCalendar.MONTH), selectedDate.get(GregorianCalendar.DAY_OF_MONTH), user)){ }%
+		<li>
+			<b>${event.getName(true)}</b> <br />
+			from <i>${event.getStartDateString(true)}</i> until <i>${event.getEndDateString(true)}</i>
+			#{if (user.equals(otherUser))}
+				 (private:${event.isPrivate()})
+				<a href="@{Application.editEvent(calendarIndex, event.getId())}">edit</a>
+				<a href="@{Application.deleteEvent(calendarIndex, event.getId())}">delete</a>
+			#{/if}	
+		</li>
+	%{ } }%
+</ol>
+#{if (user.equals(otherUser))}
+	<a href="@{Application.addEvent(user.getCalendars().indexOf(calendar))}">Add Event</a>
+#{/if}

@@ -1,0 +1,15 @@
+#{extends 'main.html' /}
+#{set title:'Calendar Overview' /}
+
+<b>${otherUser.getName()}'s Calendars</b>
+<br />
+<ul>
+	%{for(calendar in otherUser.getCalendars()){ }%
+		<li>
+			<a href="@{Application.calendar(otherUser.getCalendars().indexOf(calendar), otherUser.getName(), new GregorianCalendar())}">
+				${calendar.getName()}
+			</a>
+		</li>
+	%{ } }%
+</ul>
+

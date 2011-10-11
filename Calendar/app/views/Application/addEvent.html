@@ -1,0 +1,37 @@
+#{extends 'main.html' /}
+#{set title:'Add Event' /}
+
+
+<div class="editing">
+	<b>Edit Event</b>
+	#{form @Application.addedEvent(user.getCalendars().indexOf(calendar))}
+    
+    	#{ifErrors}
+    		<div class="error">
+    			#{errors}
+    				<li>${error}</li>
+    			#{/errors}
+    		</div>
+    	#{/ifErrors}
+    	<p>
+    	    <label for="name">Name: </label>
+    	    <input type="text" name="name" id="name" value= ${params.name}></input>
+    	</p>
+    	<p>
+    	    <label for="startDate">starts(dd.mm.yyyy;hh:mm): </label>
+    	    <input name="startDate" id="startDate" value=${event.getStartDateString(false)}></input>
+    	</p>
+    	<p>
+    	    <label for="endDate">ends(dd.mm.yyyy;hh:mm): </label>
+    	    <input name="endDate" id="endDate" value=${event.getEndDateString(false)}></input>
+    	</p>
+    	 <p>
+    	    <label for="isPrivate">isPrivate: </label>
+    	    <input type="checkbox" name="isPrivate" id="isPrivate"></input>
+    	</p>
+    	<p>
+    	    <input id="submit" type="submit" value="Add Event" />
+    	</p>
+	#{/form}
+</div>
+

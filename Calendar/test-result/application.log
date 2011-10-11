@@ -1,0 +1,5 @@
+09 Okt 2011 19:13:57,964 INFO  ~ Starting C:\Users\Niclas\ESE\ese2011-simple-ui\Calendar\.
+09 Okt 2011 19:13:57,975 INFO  ~ Module secure is available (C:\Users\Niclas\Desktop\ese2011-simple-ui\play-1.2.3\play-1.2.3\modules\secure)
+09 Okt 2011 19:13:59,657 WARN  ~ You're running Play! in DEV mode
+09 Okt 2011 19:14:04,407 INFO  ~ Connected to jdbc:h2:mem:play;MODE=MYSQL;LOCK_MODE=0
+09 Okt 2011 19:14:04,443 INFO  ~ Application 'Calendar' is now started !

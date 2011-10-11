@@ -1,0 +1,24 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+<h2>Your Calendars</h2>
+<ul>
+	%{for(calendar in user.getCalendars()){ }%
+		<li>
+			<a href="@{Application.calendar(user.getCalendars().indexOf(calendar), user.getName(), new GregorianCalendar())}">
+				${calendar.getName()}
+			</a>
+		</li>
+	%{ } }%
+</ul>
+<h2>Other Users</h2>
+<ul>
+	%{for(otherUser in users){ }%
+		%{if(user != otherUser){ }%
+			<li>
+				<a href="@{Application.userPage(otherUser.getName())}"> 
+					${otherUser.getName()}
+				</a>
+			</li>
+		%{ } }%
+	%{ } }%
+</ul>

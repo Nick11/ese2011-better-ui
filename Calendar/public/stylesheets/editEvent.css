@@ -1,0 +1,19 @@
+@import  url(main.css);
+
+div.editing{
+			//font-weight: bold;
+			//font-style: italic;
+}
+div.editing input{
+					position: absolute;
+					left: 200px;
+}
+#submit{
+					position: relative;
+					left: 100px;
+					font-weight: bold;
+					font-style: italic;
+}
+.error{
+		background-color:red;
+{

@@ -1,0 +1,38 @@
+@import  url(main.css);
+
+a.dates{
+			text-decoration:none;
+			color: green;
+}
+td.hasEventDay{
+			font-weight: bold;
+			color: white;
+}
+td.thisDay{
+			//font-style: italic;
+			background-color: blue;
+}
+td.selectedDay{
+			background-color: yellow;
+}
+td.hasEventDay{
+			font-weight: bold;
+			color: white;
+}
+div.calendarView{
+				//border: 1px solid black;
+				//width: 20%;
+				margin-top: 20px;
+}
+#arrowRight{
+			position:absolute;
+			left: 13%;
+			
+}
+#month{
+		position:absolute;
+		left:4%;
+}
+#leftArrow{
+			
+}
